@@ -4,13 +4,17 @@ import * as z from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useItemStore } from "@/app/stores/itemStore";
 
 export const AddItemFormSchema = z.object({
   item: z.string(),
 });
 
-export default function AddItemForm({}) {
+export default function AddItemForm() {
+  const addItem = useItemStore((state) => state.addItem);
+
   const [itemText, setItemText] = useState("");
+
 
   const {
     register,
@@ -25,7 +29,8 @@ export default function AddItemForm({}) {
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof AddItemFormSchema>> = (data) => {
-    console.log(data);
+    addItem(itemText);
+    setItemText("");
   };
 
   return (
@@ -41,7 +46,7 @@ export default function AddItemForm({}) {
           })}
         />
         <br />
-        <button>Add to List</button>
+        <button type="submit">Add to List</button>
       </form>
     </>
   );
