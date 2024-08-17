@@ -15,7 +15,6 @@ export default function AddItemForm() {
 
   const [itemText, setItemText] = useState("");
 
-
   const {
     register,
     handleSubmit,
