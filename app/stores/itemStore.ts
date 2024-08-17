@@ -8,7 +8,7 @@ type ItemType = {
 };
 
 interface ItemState {
-  items: Array<ItemType>;
+  items: ItemType[];
   addItem: (newItemText: string) => void;
   deleteItem: (id: number) => void;
   removeAllItems: () => void;
